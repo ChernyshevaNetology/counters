@@ -25,6 +25,17 @@ const App = () => {
         setCounters(updatedCounters);
     }
 
+const onDelete = (id)=>{
+  const deleteCount  = counters.map((c, i)=>  {
+    if(c.id === id) {
+        counters.splice(i, 1)
+          }
+    return c
+  })
+    setCounters(deleteCount)
+    console.log(counters)
+}
+
     const onAdd = () => {
        setCounters([
            ...counters,
@@ -46,7 +57,7 @@ const App = () => {
                 />
                 <AddCounter onAdd={onAdd} />
                 </div>
-                <Counters onIncrement={onIncrement} onDecrement={onDecrement} counters={counters}/>
+                <Counters  onDelete={onDelete} onIncrement={onIncrement} onDecrement={onDecrement} counters={counters}/>
             </main>
         </React.Fragment>
     );

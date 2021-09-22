@@ -1,7 +1,7 @@
 import React from "react";
 import cn from "classnames";
 
-const Counter = ({ count, onIncrement, onDecrement, id }) => {
+const Counter = ({ count, onIncrement, onDecrement, onDelete, id }) => {
   return (
     <>
       <div className="row">
@@ -24,7 +24,9 @@ const Counter = ({ count, onIncrement, onDecrement, id }) => {
           <i className="fas fa-minus" />
         </button>
         <button className="btn col-1 btn btn-primary m-2">Reset</button>
-        <button className="btn col-1 btn btn-danger m-2">
+        <button
+            onClick={()=>onDelete(id)}
+            className="btn col-1 btn btn-danger m-2">
           <i className="fas fa-times" />
         </button>
       </div>
