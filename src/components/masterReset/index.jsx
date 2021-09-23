@@ -1,10 +1,13 @@
 import React from "react";
 
-const MasterReset = () => {
+const MasterReset = ({onMasterReset, totalCount}) => {
 
     return (
-        <button className={"btn btn-primary"}>
-
+        <button
+            onClick={onMasterReset}
+            className={"btn btn-primary"}
+        disabled={totalCount===0}
+        >
             MASTER RESET
         </button>
     );

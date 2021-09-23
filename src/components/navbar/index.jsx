@@ -1,9 +1,7 @@
 import React from "react";
 
-const NavBar = ({counters}) => {
-    const totalCounters=counters.length
-    const activCounters=counters.filter(c=>c.value>0).length
-    const totalCount = counters.reduce((acc, {value})=>acc+value,0)
+const NavBar = ({totalCounters, activCounters, totalCount}) => {
+
 
     return (
         <nav className="navbar navbar-light bg-light">

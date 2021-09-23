@@ -16,6 +16,9 @@ const App = () => {
         {id: 4, value: 3},
     ]);
 
+    const totalCounters = counters.length
+    const activCounters = counters.filter(c => c.value > 0).length
+    const totalCount = counters.reduce((acc, {value}) => acc + value, 0)
 
     const onIncrement = (id) => {
         const updatedCounters = counters.map(c => c.id === id ? {id, value: ++c.value} : c);
@@ -27,14 +30,23 @@ const App = () => {
         setCounters(updatedCounters);
     }
     const onReset = (id) => {
-           const updateCounters = counters.map(c => {
-            if (c.id === id ) {
+        const updateCounters = counters.map(c => {
+            if (c.id === id) {
                 c.value = 0
-                 }
+            }
             return c
         })
         setCounters(updateCounters)
     }
+
+    const onMasterReset = () => {
+        const resetAll = counters.map(c => {
+            c.value = 0
+            return c
+        })
+        setCounters(resetAll)
+    }
+
     const onDelete = (idx) => {
         // const deleteCount  = counters.filter(c=>c.id!==id)
         // setCounters(deleteCount)
@@ -58,11 +70,10 @@ const App = () => {
 
     return (
         <React.Fragment>
-            <NavBar counters={counters} />
+            <NavBar totalCounters={totalCounters} activCounters={activCounters} totalCount={totalCount}/>
             <main className="container">
                 <div className="row1">
-                    <MasterReset
-                    />
+                    <MasterReset onMasterReset={onMasterReset} totalCount={totalCount}/>
                     <AddCounter onAdd={onAdd}/>
                 </div>
                 <Counters onReset={onReset} onDelete={onDelete} onIncrement={onIncrement} onDecrement={onDecrement}
