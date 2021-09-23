@@ -34,11 +34,11 @@ const App = () => {
         })
         setCounters(updateCounters)
     }
-    const onDelete = (id) => {
+    const onDelete = (idx) => {
         // const deleteCount  = counters.filter(c=>c.id!==id)
         // setCounters(deleteCount)
         const countersCopy = [...counters]
-        const countersRemove = countersCopy.find(c => c.id === id)
+        const countersRemove = countersCopy.find(c => c.id === idx)
         const index = countersCopy.indexOf(countersRemove)
         countersCopy.splice(index, 1)
         setCounters(countersCopy)
