@@ -37,13 +37,11 @@ const App = () => {
     const onDelete = (id) => {
         // const deleteCount  = counters.filter(c=>c.id!==id)
         // setCounters(deleteCount)
-        const countersCopy = counters
+        const countersCopy = [...counters]
         const countersRemove = countersCopy.find(c => c.id === id)
         const index = countersCopy.indexOf(countersRemove)
         countersCopy.splice(index, 1)
-        const newArrCounter = countersCopy.map(c => c)// Создаем новый массив, который не ссылается на counters
-        setCounters(newArrCounter)
-
+        setCounters(countersCopy)
     }
 
     const onAdd = () => {
