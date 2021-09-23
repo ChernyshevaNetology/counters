@@ -27,9 +27,9 @@ const App = () => {
     }
     const onReset = (id) => {
            const updateCounters = counters.map(c => {
-            if (c.id === id) {
+            if (c.id === id ) {
                 c.value = 0
-            }
+                 }
             return c
         })
         setCounters(updateCounters)

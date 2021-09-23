@@ -25,7 +25,8 @@ const Counter = ({ count, onIncrement, onDecrement, onReset, onDelete, id, idx }
         </button>
         <button
             onClick={() => onReset(id)}
-            className="btn col-1 btn btn-primary m-2">Reset</button>
+            className="btn col-1 btn btn-primary m-2"
+            disabled={count < 1}>Reset</button>
         <button
             onClick={()=>onDelete(idx)}
             className="btn col-1 btn btn-danger m-2">
