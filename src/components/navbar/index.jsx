@@ -1,6 +1,10 @@
 import React from "react";
 
-const NavBar = () => {
+const NavBar = ({counters}) => {
+    const totalCounters=counters.length
+    const activCounters=counters.filter(c=>c.value>0).length
+    const totalCount = counters.reduce((acc, {value})=>acc+value,0)
+
     return (
         <nav className="navbar navbar-light bg-light">
             <a href="#" className="navbar-brand">
@@ -10,13 +14,13 @@ const NavBar = () => {
             </a>
             <div className="container row1">
                 <h2> Total number of counters <span
-                    ></span>
+                    > {totalCounters}</span>
                 </h2>
                 <h2>Active counters <span
-                   ></span>
+                   >{activCounters}</span>
                 </h2>
                 <h2>Total Count <span>
-                    </span></h2>
+                {totalCount}</span></h2>
             </div>
         </nav>
     );

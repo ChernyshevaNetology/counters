@@ -16,6 +16,7 @@ const App = () => {
         {id: 4, value: 3},
     ]);
 
+
     const onIncrement = (id) => {
         const updatedCounters = counters.map(c => c.id === id ? {id, value: ++c.value} : c);
         setCounters(updatedCounters);
@@ -51,14 +52,13 @@ const App = () => {
                 id: Math.random(),
                 value: 0,
             }
-
         ])
     }
 
 
     return (
         <React.Fragment>
-            <NavBar/>
+            <NavBar counters={counters} />
             <main className="container">
                 <div className="row1">
                     <MasterReset
