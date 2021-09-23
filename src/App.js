@@ -4,7 +4,8 @@ import NavBar from "./components/navbar";
 import Counters from "./components/counters";
 import MasterReset from "./components/masterReset";
 import AddCounter from "./components/addCounter"
-const shortid = require('shortid');
+
+//const shortid = require('shortid');
 
 const App = () => {
 
@@ -16,24 +17,42 @@ const App = () => {
     ]);
 
     const onIncrement = (id) => {
-       const updatedCounters = counters.map(c => c.id === id ? {id, value: ++c.value} : c);
-       setCounters(updatedCounters);
+        const updatedCounters = counters.map(c => c.id === id ? {id, value: ++c.value} : c);
+        setCounters(updatedCounters);
     }
 
     const onDecrement = (id) => {
         const updatedCounters = counters.map(c => c.id === id ? {id, value: c.value > 0 ? --c.value : c.value} : c);
         setCounters(updatedCounters);
     }
+    const onReset = (id) => {
+           const updateCounters = counters.map(c => {
+            if (c.id === id ) {
+                c.value = 0
+                 }
+            return c
+        })
+        setCounters(updateCounters)
+    }
+    const onDelete = (idx) => {
+        // const deleteCount  = counters.filter(c=>c.id!==id)
+        // setCounters(deleteCount)
+        const countersCopy = [...counters]
+        const countersRemove = countersCopy.find(c => c.id === idx)
+        const index = countersCopy.indexOf(countersRemove)
+        countersCopy.splice(index, 1)
+        setCounters(countersCopy)
+    }
 
     const onAdd = () => {
-       setCounters([
-           ...counters,
-           {
-               id: Math.random(),
-               value: 0,
-           }
+        setCounters([
+            ...counters,
+            {
+                id: Math.random(),
+                value: 0,
+            }
 
-       ])
+        ])
     }
 
 
@@ -42,11 +61,12 @@ const App = () => {
             <NavBar/>
             <main className="container">
                 <div className="row1">
-                <MasterReset
-                />
-                <AddCounter onAdd={onAdd} />
+                    <MasterReset
+                    />
+                    <AddCounter onAdd={onAdd}/>
                 </div>
-                <Counters onIncrement={onIncrement} onDecrement={onDecrement} counters={counters}/>
+                <Counters onReset={onReset} onDelete={onDelete} onIncrement={onIncrement} onDecrement={onDecrement}
+                          counters={counters}/>
             </main>
         </React.Fragment>
     );

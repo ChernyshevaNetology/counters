@@ -4,6 +4,7 @@ const MasterReset = () => {
 
     return (
         <button className={"btn btn-primary"}>
+
             MASTER RESET
         </button>
     );
