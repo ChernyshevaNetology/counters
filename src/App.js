@@ -25,15 +25,23 @@ const App = () => {
         const updatedCounters = counters.map(c => c.id === id ? {id, value: c.value > 0 ? --c.value : c.value} : c);
         setCounters(updatedCounters);
     }
-
+    const onReset = (id) => {
+           const updateCounters = counters.map(c => {
+            if (c.id === id) {
+                c.value = 0
+            }
+            return c
+        })
+        setCounters(updateCounters)
+    }
     const onDelete = (id) => {
         // const deleteCount  = counters.filter(c=>c.id!==id)
         // setCounters(deleteCount)
-        const countersCopy =counters
-        const countersRemove = countersCopy.find(c=>c.id===id)
+        const countersCopy = counters
+        const countersRemove = countersCopy.find(c => c.id === id)
         const index = countersCopy.indexOf(countersRemove)
         countersCopy.splice(index, 1)
-        const newArrCounter=countersCopy.map(c=>c)// Создаем новый массив, который не ссылается на counters
+        const newArrCounter = countersCopy.map(c => c)// Создаем новый массив, который не ссылается на counters
         setCounters(newArrCounter)
 
     }
@@ -59,7 +67,8 @@ const App = () => {
                     />
                     <AddCounter onAdd={onAdd}/>
                 </div>
-                <Counters onDelete={onDelete} onIncrement={onIncrement} onDecrement={onDecrement} counters={counters}/>
+                <Counters onReset={onReset} onDelete={onDelete} onIncrement={onIncrement} onDecrement={onDecrement}
+                          counters={counters}/>
             </main>
         </React.Fragment>
     );
